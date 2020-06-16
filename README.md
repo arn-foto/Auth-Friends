@@ -65,4 +65,4 @@ Topics:
 - Style the friends list and the input field and make everything look nice.
 - Expand the number of properties that you put on each friend object. Feel free to remove the dummy data on the server or modify it in any way
 
-testing testing 1 2 3 1 2 3
+testing testing 1 2 3
