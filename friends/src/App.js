@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import Login from "./components/Login.js";
+import FriendsList from "./components/FriendsList";
+import AddFriend from "./components/AddFriend";
+import UpdateFriend from "./components/UpdateFriend";
+import DeleteFriend from "./components/DeleteFriend";
+import PrivateRoute from "./components/PrivateRoute";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { credentials: {} };
+  }
+  render() {
+    return (
+      <Router>
+        <div className="links">
+          <Link to="/login">Login</Link>
+          <Link to="/friends-list">Friends List</Link>
+          <Link to="/add-friend">Add Friend</Link>
+          <Link to="/update-friend">Update Friend</Link>
+          <Link to="/delete-friend">Delete Friend</Link>
+
+          <Switch>
+            <PrivateRoute exact path="/add-friend" component={AddFriend} />
+            <PrivateRoute
+              exact
+              path="/delete-friend"
+              component={DeleteFriend}
+            />
+            <PrivateRoute exact path="/friends-list" component={FriendsList} />
+            <PrivateRoute
+              exact
+              path="/update-friend"
+              component={UpdateFriend}
+            />
+            <Route path="/login" component={Login} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
-
 export default App;
